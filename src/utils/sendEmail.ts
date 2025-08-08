@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import "dotenv/config";
 
 // Create a test account or replace with real credentials.
 
@@ -7,8 +8,8 @@ export const sendEmail = async (to: string, html: string) => {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "boloroooturshilt@gmail.com",
-        pass: "kcfk nutr crki pxpm",
+        user: process.env.EMAIL_USER,
+        pass: process.env.SEND_EMAIL,
       },
     });
 

@@ -7,7 +7,6 @@ export const getCurrentProfile = async (req: GetUserAuthInfoRequest, res: Respon
   
   try {
     const headerUser = req.user ;
-    console.log("headerUser::::", headerUser);
     
     if(!headerUser){
       res.status(400).json({message:"Error"});

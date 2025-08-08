@@ -1,6 +1,6 @@
 import { JwtPayload, verify } from "jsonwebtoken";
 import { NextFunction, Request, Response } from "express";
-import { secret } from "../controller/user/sign-in.controller";
+import "dotenv/config";
 
 type DecodedUser = {
   userId: number;
@@ -26,8 +26,8 @@ export const authenticateToken = (
   }
 
   try {
+    const secret = process.env.SECRET!;
     const decoded = verify(token, secret) as JwtPayload;
-    console.log("decoded:", decoded);
 
     console.log("decoded decoded:::", decoded.data);
 

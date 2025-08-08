@@ -2,6 +2,7 @@ import { Response, Request } from "express";
 import { prisma } from "../../utils/prisma";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import "dotenv/config";
 
 export const createUser = async (req: Request, res: Response) => {
   const { username, email, password } = req.body;
@@ -35,7 +36,7 @@ export const createUser = async (req: Request, res: Response) => {
       username: user?.username,
     };
 
-    const secret = "Super-Duper-Secret-Zayu";
+    const secret = process.env.SECRET!;
     const sixHour = Math.floor(Date.now() / 1000) * 6 * 60 * 60;
 
     const signUpUserAccessToken = jwt.sign({ exp: sixHour, data }, secret);
